@@ -96,15 +96,23 @@ const App: React.FC = () => {
 
   const handleEndGame = async (name: string, score: number, gameMode: '1P'|'2P', lines: number, isWinner: boolean = true, isPlayer2: boolean = false) => {
      setTimeout(async () => {
-         const playerName = isWinner ? prompt(`Game Over! Enter name for ${name} (Score: ${score}):`, name) : null;
+         // Prompt for name (for 1P mode or always for 2P mode)
+         const promptMessage = isWinner 
+             ? `Game Over! ${name} WINS! Enter name (Score: ${score}):`
+             : `Game Over! Enter name for ${name} (Score: ${score}):`;
+         const playerName = prompt(promptMessage, name);
          
          if (playerName) {
              await saveScore(playerName, score, gameMode, lines, isPlayer2, isWinner);
-             setRefreshScores(prev => prev + 1);
-             // Scroll to leaderboard
-             setTimeout(() => {
-                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-             }, 300);
+             
+             // Only refresh and scroll after the final player (Player 2 in 2P mode, or Player 1 in 1P mode)
+             if (gameMode === '1P' || (gameMode === '2P' && isPlayer2)) {
+                 setRefreshScores(prev => prev + 1);
+                 // Scroll to leaderboard
+                 setTimeout(() => {
+                    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                 }, 300);
+             }
          }
 
          if (gameMode === '1P') {

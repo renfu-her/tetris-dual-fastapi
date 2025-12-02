@@ -80,13 +80,16 @@ export const saveScore = async (
         // First player (Player 1)
         pendingGame.player1 = { name, score, lines };
         if (isWinner) pendingGame.winner = 1;
+        console.log('Saved Player 1 data:', pendingGame.player1);
       } else {
         // Second player (Player 2)
         pendingGame.player2 = { name, score, lines };
-        if (isWinner) pendingGame.winner = 2;
+        if (isWinner && !pendingGame.winner) pendingGame.winner = 2;
+        console.log('Saved Player 2 data:', pendingGame.player2);
         
         // Both players recorded, save the game
         if (pendingGame.player1 && pendingGame.player2) {
+          console.log('Submitting game:', pendingGame);
           const response = await fetch(`${API_BASE_URL}/games`, {
             method: 'POST',
             headers: {
@@ -101,11 +104,16 @@ export const saveScore = async (
           });
 
           if (!response.ok) {
+            const errorData = await response.text();
+            console.error('Failed to save game:', response.status, errorData);
             throw new Error('Failed to save game');
           }
           
+          console.log('Game saved successfully!');
           // Clear pending game
           pendingGame = {};
+        } else {
+          console.warn('Missing player data:', { player1: pendingGame.player1, player2: pendingGame.player2 });
         }
       }
     }
