@@ -1,5 +1,31 @@
 # Change Log
 
+## 2024-12-02 - Update 3: Frontend API Integration Fixes
+
+### 前端整合修正
+
+**問題：** 2P 模式只提示贏家輸入名字，無法收集雙方完整資料。
+
+**解決：**
+- ✅ 2P 模式現在提示**兩個玩家**都輸入名字
+- ✅ 贏家顯示特殊提示訊息："WINS!"
+- ✅ 完整收集雙方資料後才送出 API 請求
+- ✅ 加入詳細的 Console log 便於除錯
+
+**更新檔案：**
+- `frontend/App.tsx` - 改進 handleEndGame，雙方都提示輸入
+- `frontend/services/leaderboardService.ts` - 加入 console.log
+- `frontend/TESTING.md` - 新增測試指南
+
+**測試流程：**
+1. 玩 2P 模式
+2. 一方先死
+3. 會出現兩次提示輸入名字
+4. Console 顯示完整的資料收集流程
+5. 一次 POST 請求包含雙方資料
+
+---
+
 ## 2024-12-02 - Update 2: Game-Based Recording (Single Record per Game)
 
 ### Major Architecture Change
