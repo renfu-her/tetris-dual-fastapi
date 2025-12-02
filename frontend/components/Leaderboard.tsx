@@ -10,7 +10,11 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ refreshTrigger }) => {
   const [scores, setScores] = useState<LeaderboardEntry[]>([]);
 
   useEffect(() => {
-    setScores(getLeaderboard());
+    const fetchLeaderboard = async () => {
+      const data = await getLeaderboard();
+      setScores(data);
+    };
+    fetchLeaderboard();
   }, [refreshTrigger]);
 
   return (

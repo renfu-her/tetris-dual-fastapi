@@ -98,7 +98,7 @@ const App: React.FC = () => {
          const playerName = isWinner ? prompt(`Game Over! Enter name for ${name} (Score: ${score}):`, name) : null;
          
          if (playerName) {
-             saveScore(playerName, score, gameMode);
+             await saveScore(playerName, score, gameMode, lines);
              setRefreshScores(prev => prev + 1);
              // Scroll to leaderboard
              setTimeout(() => {
