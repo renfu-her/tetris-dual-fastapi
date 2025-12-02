@@ -6,7 +6,7 @@ import os
 from dotenv import load_dotenv
 
 from app.database import init_db
-from app.routers import scores, leaderboard
+from app.routers import scores as games_router, leaderboard
 
 # Load environment variables
 load_dotenv()
@@ -45,7 +45,7 @@ app.add_middleware(
 )
 
 # Include routers
-app.include_router(scores.router)
+app.include_router(games_router.router)
 app.include_router(leaderboard.router)
 
 

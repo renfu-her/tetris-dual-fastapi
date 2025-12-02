@@ -71,34 +71,35 @@ const App: React.FC = () => {
     if (mode === '1P') {
       if (game1.gameOver) {
         setIsPlaying(false);
-        handleEndGame('Player 1', game1.score, '1P', game1.lines);
+        handleEndGame('Player 1', game1.score, '1P', game1.lines, true, false);
       }
     } else if (mode === '2P') {
         if (game1.gameOver && !game2.gameOver) {
             setIsPlaying(false);
             setWinner("Player 2 Wins!");
-            handleEndGame('Player 1', game1.score, '2P', game1.lines, false); // Loser
-            handleEndGame('Player 2', game2.score, '2P', game2.lines, true); // Winner
+            handleEndGame('Player 1', game1.score, '2P', game1.lines, false, false); // Loser
+            handleEndGame('Player 2', game2.score, '2P', game2.lines, true, true); // Winner
         } else if (game2.gameOver && !game1.gameOver) {
             setIsPlaying(false);
             setWinner("Player 1 Wins!");
-            handleEndGame('Player 2', game2.score, '2P', game2.lines, false);
-            handleEndGame('Player 1', game1.score, '1P', game1.lines, true);
+            handleEndGame('Player 2', game2.score, '2P', game2.lines, false, true); // Loser
+            handleEndGame('Player 1', game1.score, '2P', game1.lines, true, false); // Winner
         } else if (game1.gameOver && game2.gameOver) {
             setIsPlaying(false);
-            setWinner(game1.score > game2.score ? "Player 1 Wins (Score)!" : "Player 2 Wins (Score)!");
-            handleEndGame('Player 1', game1.score, '2P', game1.lines);
-            handleEndGame('Player 2', game2.score, '2P', game2.lines);
+            const p1Wins = game1.score > game2.score;
+            setWinner(p1Wins ? "Player 1 Wins (Score)!" : "Player 2 Wins (Score)!");
+            handleEndGame('Player 1', game1.score, '2P', game1.lines, p1Wins, false);
+            handleEndGame('Player 2', game2.score, '2P', game2.lines, !p1Wins, true);
         }
     }
   }, [isPlaying, mode, game1.gameOver, game2.gameOver, game1.score, game2.score, game1.lines, game2.lines]);
 
-  const handleEndGame = async (name: string, score: number, gameMode: '1P'|'2P', lines: number, isWinner: boolean = true) => {
+  const handleEndGame = async (name: string, score: number, gameMode: '1P'|'2P', lines: number, isWinner: boolean = true, isPlayer2: boolean = false) => {
      setTimeout(async () => {
          const playerName = isWinner ? prompt(`Game Over! Enter name for ${name} (Score: ${score}):`, name) : null;
          
          if (playerName) {
-             await saveScore(playerName, score, gameMode, lines);
+             await saveScore(playerName, score, gameMode, lines, isPlayer2, isWinner);
              setRefreshScores(prev => prev + 1);
              // Scroll to leaderboard
              setTimeout(() => {

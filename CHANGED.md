@@ -1,6 +1,110 @@
 # Change Log
 
-## 2024-12-02 - FastAPI Backend Implementation
+## 2024-12-02 - Update 2: Game-Based Recording (Single Record per Game)
+
+### Major Architecture Change
+
+改變資料庫結構為**單一遊戲記錄**模式，一場遊戲（1或2人）存成一筆資料。
+
+#### Database Schema Change
+
+**舊結構** (`scores` 表) - 每個玩家一筆記錄：
+- 每個玩家的分數分開儲存
+- 無法關聯同一場遊戲的兩個玩家
+- 無法記錄勝負關係
+
+**新結構** (`games` 表) - 一場遊戲一筆記錄：
+```sql
+CREATE TABLE games (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    mode ENUM('1P', '2P'),
+    -- Player 1 (always present)
+    player1_name VARCHAR(100),
+    player1_score INT,
+    player1_lines INT,
+    -- Player 2 (nullable, for 2P mode)
+    player2_name VARCHAR(100) NULL,
+    player2_score INT NULL,
+    player2_lines INT NULL,
+    -- Winner indicator
+    winner INT NULL,  -- 1, 2, or NULL
+    created_at TIMESTAMP,
+    INDEX(player1_score, mode, created_at),
+    INDEX(player2_score, mode, created_at)
+);
+```
+
+#### API Changes
+
+**端點更新：**
+- `POST /api/scores` → `POST /api/games`
+- `GET /api/leaderboard` - 回傳格式改為扁平化的玩家表現列表
+
+**新的請求格式：**
+
+1P 模式：
+```json
+{
+  "mode": "1P",
+  "player1": {
+    "name": "Alice",
+    "score": 1500,
+    "lines": 15
+  },
+  "player2": null,
+  "winner": null
+}
+```
+
+2P 模式：
+```json
+{
+  "mode": "2P",
+  "player1": {
+    "name": "Alice",
+    "score": 2000,
+    "lines": 20
+  },
+  "player2": {
+    "name": "Bob",
+    "score": 1800,
+    "lines": 18
+  },
+  "winner": 1
+}
+```
+
+#### Updated Files
+
+**Backend:**
+- `app/models.py` - `Score` → `Game` model with player1/player2 fields
+- `app/schemas.py` - New `GameCreate`, `GameResponse`, `PlayerData` schemas
+- `app/crud.py` - Updated CRUD operations for game-based recording
+- `app/routers/scores.py` - Renamed to handle games, new endpoint structure
+- `app/routers/leaderboard.py` - Updated to flatten game records into player performances
+- `create_database.sql` - Added DROP DATABASE to reset schema
+
+**Frontend:**
+- `services/leaderboardService.ts` - Updated to handle game-based API, collect both players' data for 2P mode
+- `App.tsx` - Updated handleEndGame to pass player number and winner status
+
+#### Key Benefits
+
+✅ 完整的遊戲記錄 - 一場遊戲的所有資訊在一筆記錄中  
+✅ 勝負關係明確 - 可記錄誰是贏家  
+✅ 資料關聯性強 - 容易查詢同場遊戲的雙方表現  
+✅ 統計更準確 - 可正確計算遊戲場次 vs 玩家人次
+
+#### Migration Note
+
+⚠️ 這是破壞性更新，需要重建資料庫：
+```bash
+mysql -u root < backend/create_database.sql
+```
+
+---
+
+## 2024-12-02 - Update 1: FastAPI Backend Implementation
 
 ### Backend API Created
 

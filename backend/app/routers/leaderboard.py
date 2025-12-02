@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
 from typing import List, Optional
 from app.database import get_db
-from app.schemas import ScoreResponse, LeaderboardStats
+from app.schemas import LeaderboardEntry, LeaderboardStats
 from app import crud
 
 router = APIRouter(
@@ -14,15 +14,15 @@ router = APIRouter(
 
 @router.get(
     "",
-    response_model=List[ScoreResponse],
+    response_model=List[LeaderboardEntry],
     summary="Get leaderboard rankings",
-    description="Retrieve top scores with optional filtering by game mode"
+    description="Retrieve top player performances with optional filtering by game mode"
 )
 def get_leaderboard(
     mode: Optional[str] = Query(
         "all",
         description="Filter by game mode: '1P', '2P', or 'all'",
-        regex="^(1P|2P|all)$"
+        pattern="^(1P|2P|all)$"
     ),
     limit: int = Query(
         10,
@@ -34,12 +34,13 @@ def get_leaderboard(
 ):
     """
     Get leaderboard rankings sorted by score (highest first).
+    Returns individual player performances from all games.
     
     - **mode**: Filter by game mode ('1P', '2P', or 'all' for no filter)
     - **limit**: Maximum number of results (default: 10, max: 100)
     """
-    scores = crud.get_leaderboard(db, mode=mode, limit=limit)
-    return scores
+    entries = crud.get_leaderboard(db, mode=mode, limit=limit)
+    return entries
 
 
 @router.get(
@@ -54,8 +55,9 @@ def get_stats(db: Session = Depends(get_db)):
     
     Returns:
     - Total number of games played
+    - Total 1P and 2P games
     - Highest score achieved
-    - Average score across all games
+    - Average score across all players
     - Total lines cleared
     """
     stats = crud.get_leaderboard_stats(db)
