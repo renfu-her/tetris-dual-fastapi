@@ -16,12 +16,12 @@ load_dotenv()
 async def lifespan(app: FastAPI):
     """Application lifespan manager."""
     # Startup: Initialize database tables
-    print("🚀 Starting up Tetris Dual Backend...")
+    print(">>> Starting up Tetris Dual Backend...")
     init_db()
-    print("✅ Database initialized successfully")
+    print(">>> Database initialized successfully")
     yield
     # Shutdown
-    print("👋 Shutting down Tetris Dual Backend...")
+    print(">>> Shutting down Tetris Dual Backend...")
 
 
 # Create FastAPI application
