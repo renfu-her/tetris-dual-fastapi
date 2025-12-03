@@ -4,6 +4,7 @@ import { useTetris } from './hooks/useTetris';
 import TetrisBoard from './components/TetrisBoard';
 import { NextPiece } from './components/NextPiece';
 import Leaderboard from './components/Leaderboard';
+import { ApiInfo } from './components/ApiInfo';
 import { INPUT_P1, INPUT_P2 } from './constants';
 import { saveScore } from './services/leaderboardService';
 import { getGameSummary } from './services/geminiService';
@@ -14,6 +15,7 @@ const App: React.FC = () => {
   const [refreshScores, setRefreshScores] = useState(0);
   const [winner, setWinner] = useState<string | null>(null);
   const [aiComment, setAiComment] = useState<string | null>(null);
+  const [showApiInfo, setShowApiInfo] = useState(false);
   
   // Game Over handling state
   const [gameOverStats, setGameOverStats] = useState<{p1: {score: number, lines: number} | null, p2: {score: number, lines: number} | null}>({ p1: null, p2: null });
@@ -176,6 +178,12 @@ const App: React.FC = () => {
               <p className="mt-6 text-xs text-slate-500 max-w-xs mx-auto">
                 P1: WASD + Space<br/>P2: Arrows + Enter<br/>Score high by dropping fast!
               </p>
+              <button 
+                onClick={() => setShowApiInfo(true)}
+                className="mt-4 px-4 py-2 text-sm bg-slate-900 hover:bg-slate-700 text-cyan-400 rounded-lg border border-slate-600 transition-colors"
+              >
+                🔌 API Info
+              </button>
             </div>
           </div>
         )}
@@ -288,6 +296,9 @@ const App: React.FC = () => {
         <Leaderboard refreshTrigger={refreshScores} />
 
       </main>
+
+      {/* API Info Modal */}
+      {showApiInfo && <ApiInfo onClose={() => setShowApiInfo(false)} />}
     </div>
   );
 };

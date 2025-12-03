@@ -1,5 +1,54 @@
 # Change Log
 
+## 2024-12-03 - Update 6: API Information Component
+
+### 前端 API 資訊組件 (Frontend API Info Component)
+
+**新增功能：**
+- ✅ React 組件顯示後端 API 狀態
+- ✅ 即時檢查 API 連接狀態
+- ✅ 顯示所有可用的 API 端點
+- ✅ 直接連結到 API 文檔（Swagger UI / ReDoc）
+- ✅ 顯示當前環境設定資訊
+- ✅ 友善的錯誤處理和診斷提示
+
+**新增檔案：**
+- `frontend/components/ApiInfo.tsx` - API 資訊顯示組件
+
+**更新檔案：**
+- `frontend/App.tsx` - 添加 API Info 按鈕和彈窗
+
+**功能特點：**
+- 📡 **即時狀態檢查**：自動獲取 API 狀態和健康檢查
+- 🌐 **連接資訊**：顯示當前使用的 API URL
+- 📋 **端點列表**：列出所有可用的 API 端點（GET/POST）
+- 📚 **文檔連結**：快速訪問 Swagger UI 和 ReDoc
+- ⚙️ **環境資訊**：顯示環境變數配置提示
+- ❌ **錯誤診斷**：連接失敗時提供清晰的錯誤訊息和解決建議
+
+**使用方式：**
+1. 在主選單點擊 "🔌 API Info" 按鈕
+2. 查看 API 連接狀態和端點資訊
+3. 點擊文檔連結可以打開完整的 API 文檔
+
+**顯示內容：**
+- API 狀態（online/offline）
+- 服務版本號
+- 健康檢查結果
+- API Base URL 和 Root URL
+- 所有可用端點及其用途
+- Swagger UI 和 ReDoc 文檔連結
+- 環境變數設定說明
+
+**技術亮點：**
+- 使用 React Hooks（useState, useEffect）
+- 優雅的 Modal 彈窗設計
+- 深色主題 UI，與遊戲風格一致
+- 完整的錯誤處理機制
+- 自動從環境變數讀取 API URL
+
+---
+
 ## 2024-12-03 - Update 5: Environment Variable Configuration for Frontend
 
 ### 前端環境變數配置 (Frontend Environment Variable Configuration)
