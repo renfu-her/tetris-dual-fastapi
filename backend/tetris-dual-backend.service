@@ -1,0 +1,47 @@
+[Unit]
+Description=Gunicorn with Uvicorn workers to serve Tetris Dual backend (FastAPI)
+After=network.target mysql.service
+
+[Service]
+User=ai-tracks-tetris-game
+Group=ai-tracks-tetris-game
+WorkingDirectory=/home/ai-tracks-tetris-game/htdocs/tetris-game.ai-tracks.com/backend
+
+# 環境變數
+Environment="PATH=/home/ai-tracks-tetris-game/.local/bin:/usr/local/bin:/usr/bin:/bin"
+
+# 使用 uv run 來執行 gunicorn（重要！）
+# 這樣 uv 會正確管理虛擬環境和依賴
+ExecStart=/home/ai-tracks-tetris-game/.local/bin/uv run gunicorn app.main:app \
+    -w 8 \
+    -k uvicorn.workers.UvicornWorker \
+    -b 127.0.0.1:8098 \
+    --worker-connections 1000 \
+    --timeout 120 \
+    --graceful-timeout 30 \
+    --access-logfile /var/log/uvicorn/tetris-game-access.log \
+    --error-logfile /var/log/uvicorn/tetris-game-error.log \
+    --log-level info \
+    --capture-output \
+    --enable-stdio-inheritance
+
+# 重啟策略
+Restart=always
+RestartSec=3
+
+# 信號處理
+KillSignal=SIGTERM
+KillMode=mixed
+TimeoutStopSec=30
+
+# 進程類型
+Type=notify
+NotifyAccess=all
+
+# 安全性設定（可選，提高安全性）
+# NoNewPrivileges=true
+# PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+
