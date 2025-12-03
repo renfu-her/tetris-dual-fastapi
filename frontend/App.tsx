@@ -174,7 +174,9 @@ const App: React.FC = () => {
                 </button>
               </div>
               <p className="mt-6 text-xs text-slate-500 max-w-xs mx-auto">
-                P1: WASD + Space<br/>P2: Arrows + Enter<br/>Score high by dropping fast!
+                P1: W/A/D 移動旋轉 | X 軟降 | S 快降<br/>
+                P2: I/J/L 旋轉左右 | K 軟降 | , 快降<br/>
+                Score high by dropping fast!
               </p>
             </div>
           </div>
@@ -265,18 +267,24 @@ const App: React.FC = () => {
             {/* Controls Helper - INCREASED FONT SIZE */}
              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-lg text-slate-400 mt-8 max-w-4xl w-full">
                 <div className="bg-slate-800/50 p-4 rounded-lg border border-slate-700">
-                    <p className="font-bold text-cyan-400 mb-2">P1 Controls</p>
-                    <ul className="list-disc pl-5 space-y-1">
-                      <li><span className="text-white font-mono">W, A, S, D</span> to Move/Rotate</li>
-                      <li><span className="text-white font-mono">Space</span> to Hard Drop</li>
+                    <p className="font-bold text-cyan-400 mb-3 text-xl">🎮 P1 鍵盤控制</p>
+                    <ul className="space-y-2 text-base">
+                      <li>◀️ 左移: <span className="text-cyan-300 font-mono font-bold text-lg">A</span></li>
+                      <li>▶️ 右移: <span className="text-cyan-300 font-mono font-bold text-lg">D</span></li>
+                      <li>🔄 旋轉: <span className="text-cyan-300 font-mono font-bold text-lg">W</span></li>
+                      <li>⬇️ 軟降: <span className="text-cyan-300 font-mono font-bold text-lg">X</span></li>
+                      <li>⚡ 快降: <span className="text-cyan-300 font-mono font-bold text-lg">S</span></li>
                     </ul>
                 </div>
                 {mode === '2P' && (
                     <div className="bg-slate-800/50 p-4 rounded-lg border border-slate-700">
-                        <p className="font-bold text-purple-400 mb-2">P2 Controls</p>
-                         <ul className="list-disc pl-5 space-y-1">
-                          <li><span className="text-white font-mono">Arrow Keys</span> to Move/Rotate</li>
-                          <li><span className="text-white font-mono">Enter</span> to Hard Drop</li>
+                        <p className="font-bold text-purple-400 mb-3 text-xl">🎮 P2 鍵盤控制</p>
+                        <ul className="space-y-2 text-base">
+                          <li>◀️ 左移: <span className="text-purple-300 font-mono font-bold text-lg">J</span></li>
+                          <li>▶️ 右移: <span className="text-purple-300 font-mono font-bold text-lg">L</span></li>
+                          <li>🔄 旋轉: <span className="text-purple-300 font-mono font-bold text-lg">I</span></li>
+                          <li>⬇️ 軟降: <span className="text-purple-300 font-mono font-bold text-lg">K</span></li>
+                          <li>⚡ 快降: <span className="text-purple-300 font-mono font-bold text-lg">,</span> (逗號)</li>
                         </ul>
                     </div>
                 )}

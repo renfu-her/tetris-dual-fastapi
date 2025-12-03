@@ -1,8 +1,8 @@
 # Change Log
 
-## 2025-12-03 - Update 12: Keyboard Control Customization
+## 2025-12-03 - Update 12: Keyboard Control Customization & UI Instructions
 
-### 鍵盤控制調整 (Keyboard Control Adjustments)
+### 鍵盤控制調整與介面說明優化 (Keyboard Control Adjustments & UI Instructions Enhancement)
 
 **修改內容：**
 
@@ -20,18 +20,35 @@
 - Hard Drop (快速到底): `Enter/NumpadEnter` → `,` (逗號)
 - Soft Drop (軟下降): `Arrow Down` → `K` (保持一致性)
 
+**UI 介面優化：**
+- ✅ 在主選單添加簡潔的鍵盤提示
+- ✅ 在遊戲畫面添加詳細的鍵盤控制說明卡片
+- ✅ 使用 emoji 圖示使說明更直觀
+- ✅ P1 使用青色 (cyan)，P2 使用紫色 (purple) 區分
+- ✅ 中文化操作說明（左移、右移、旋轉、軟降、快降）
+- ✅ 大字體顯示按鍵，易於閱讀
+
 **更新檔案：**
 - `frontend/constants.ts` - 更新 INPUT_P1 和 INPUT_P2 鍵盤對應
+- `frontend/App.tsx` - 優化鍵盤控制說明 UI
 
 **控制鍵摘要表：**
 
 | 功能 | 1P | 2P |
 |------|----|----|
-| 左移 | A | J |
-| 右移 | D | L |
-| 旋轉 | W | I |
-| 軟下降 | X | K |
-| 快速到底 | S | , |
+| 左移 ◀️ | A | J |
+| 右移 ▶️ | D | L |
+| 旋轉 🔄 | W | I |
+| 軟降 ⬇️ | X | K |
+| 快降 ⚡ | S | , |
+
+**UI 顯示效果：**
+- 主選單：簡短的鍵位提示
+- 遊戲中：詳細的控制卡片，包含：
+  - 每個操作的圖示
+  - 清楚的中文說明
+  - 大字體的按鍵標示
+  - 顏色區分 P1/P2
 
 **Date:** 2025-12-03
 
