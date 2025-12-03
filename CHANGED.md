@@ -1,18 +1,25 @@
 # Change Log
 
-## 2024-12-03 - Update 7: Production Troubleshooting Tools
+## 2024-12-03 - Update 7: Production Troubleshooting & CORS Fix
 
-### 生產環境診斷工具 (Production Troubleshooting Tools)
+### 生產環境診斷工具 + CORS 配置修復
 
 **新增功能：**
 - ✅ 快速診斷腳本 - 立即找出問題
 - ✅ 生產環境狀態檢查
 - ✅ 完整的修復指南
 - ✅ 常見問題解決方案
+- ✅ **CORS 配置自動修復**
+- ✅ CORS 詳細配置指南
 
 **新增檔案：**
 - `backend/QUICK_FIX.md` - 500 錯誤快速修復指南
 - `backend/check-production.sh` - 生產環境快速檢查腳本
+- `backend/fix-cors.sh` - CORS 配置自動修復腳本
+- `backend/CORS_SETUP.md` - CORS 配置完整指南
+
+**更新檔案：**
+- `backend/app/main.py` - 改進 CORS 配置，增加日誌輸出
 
 **使用方式：**
 

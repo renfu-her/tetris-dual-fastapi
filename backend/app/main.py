@@ -35,13 +35,12 @@ app = FastAPI(
 )
 
 # Configure CORS
-cors_origins_env = os.getenv("CORS_ORIGINS", "http://localhost:5173,http://localhost:3000")
+cors_origins_env = os.getenv("CORS_ORIGINS", "http://localhost:8098")
 cors_origins = [origin.strip() for origin in cors_origins_env.split(",")]
 
 # 在開發環境中允許所有來源（可選）
 if os.getenv("ENV", "development") == "development":
-    cors_origins.append("http://127.0.0.1:5173")
-    cors_origins.append("http://127.0.0.1:3000")
+    cors_origins.append("http://127.0.0.1:8098")
 
 print(f">>> CORS允許的來源: {cors_origins}")
 
