@@ -44,7 +44,7 @@ fi
 echo "" >> .env
 echo "# CORS Origins - 允許的前端來源" >> .env
 echo "# 多個來源用逗號分隔，不要有空格" >> .env
-echo "CORS_ORIGINS=https://tetris-game.ai-tracks.com,http://localhost:5173,http://localhost:3000" >> .env
+echo "CORS_ORIGINS=https://tetris-game.ai-tracks.com,http://localhost:3000,http://localhost:5173,http://localhost:8098" >> .env
 
 echo -e "${GREEN}✓${NC} 已添加 CORS 配置"
 echo ""

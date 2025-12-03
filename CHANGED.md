@@ -1,5 +1,43 @@
 # Change Log
 
+## 2024-12-03 - Update 8: Final CORS Configuration
+
+### 最終 CORS 配置 (Final CORS Configuration)
+
+**修正內容：**
+- ✅ 允許生產環境：`https://tetris-game.ai-tracks.com`
+- ✅ 允許本地開發：`http://localhost:3000`, `http://localhost:5173`, `http://localhost:8098`
+- ✅ 開發模式自動添加 127.0.0.1 變體
+- ✅ 更新所有相關腳本和文檔
+
+**CORS 允許的來源：**
+```
+生產環境：
+- https://tetris-game.ai-tracks.com
+
+開發環境：
+- http://localhost:3000
+- http://localhost:5173
+- http://localhost:8098
+- http://127.0.0.1:3000
+- http://127.0.0.1:5173
+- http://127.0.0.1:8098
+```
+
+**更新檔案：**
+- `backend/app/main.py` - CORS 配置
+- `backend/fix-cors.sh` - 自動修復腳本
+- `backend/.env.template` - 環境變數模板
+
+**部署到生產環境：**
+```bash
+cd /home/ai-tracks-tetris-game/htdocs/tetris-game.ai-tracks.com/backend
+git pull
+sudo systemctl restart tetris-dual-backend.service
+```
+
+---
+
 ## 2024-12-03 - Update 7: Production Troubleshooting & CORS Fix
 
 ### 生產環境診斷工具 + CORS 配置修復
