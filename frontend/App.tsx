@@ -175,7 +175,7 @@ const App: React.FC = () => {
               </div>
               <p className="mt-6 text-xs text-slate-500 max-w-xs mx-auto">
                 P1: W/A/D 移動旋轉 | X 軟降 | S 快降<br/>
-                P2: I/J/L 旋轉左右 | K 軟降 | , 快降<br/>
+                P2: I/J/L 旋轉左右 | K 軟降 | M 快降<br/>
                 Score high by dropping fast!
               </p>
             </div>
@@ -284,7 +284,7 @@ const App: React.FC = () => {
                           <span>▶️ <span className="text-purple-300 font-mono font-bold">L</span> 右移</span>
                           <span>🔄 <span className="text-purple-300 font-mono font-bold">I</span> 旋轉</span>
                           <span>⬇️ <span className="text-purple-300 font-mono font-bold">K</span> 軟降</span>
-                          <span>⚡ <span className="text-purple-300 font-mono font-bold">,</span> 快降</span>
+                          <span>⚡ <span className="text-purple-300 font-mono font-bold">M</span> 快降</span>
                         </div>
                     </div>
                 )}
