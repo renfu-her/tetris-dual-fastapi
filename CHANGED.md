@@ -1,5 +1,42 @@
 # Change Log
 
+## 2025-12-03 - Update 12: Keyboard Control Customization
+
+### 鍵盤控制調整 (Keyboard Control Adjustments)
+
+**修改內容：**
+
+**1P (Player 1) 控制鍵：**
+- Hard Drop (快速到底): `Space` → `S`
+- Soft Drop (軟下降): `S` → `X` (避免與 Hard Drop 衝突)
+- Move Left: `A` (保持不變)
+- Move Right: `D` (保持不變)
+- Rotate (旋轉): `W` (保持不變)
+
+**2P (Player 2) 控制鍵：**
+- Move Left (左移): `Arrow Left` → `J`
+- Move Right (右移): `Arrow Right` → `L`
+- Rotate (旋轉): `Arrow Up` → `I`
+- Hard Drop (快速到底): `Enter/NumpadEnter` → `,` (逗號)
+- Soft Drop (軟下降): `Arrow Down` → `K` (保持一致性)
+
+**更新檔案：**
+- `frontend/constants.ts` - 更新 INPUT_P1 和 INPUT_P2 鍵盤對應
+
+**控制鍵摘要表：**
+
+| 功能 | 1P | 2P |
+|------|----|----|
+| 左移 | A | J |
+| 右移 | D | L |
+| 旋轉 | W | I |
+| 軟下降 | X | K |
+| 快速到底 | S | , |
+
+**Date:** 2025-12-03
+
+---
+
 ## 2024-12-03 - Update 11: Clean UI - 移除 API 狀態組件
 
 ### 簡化使用者介面

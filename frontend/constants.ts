@@ -78,14 +78,14 @@ export const INPUT_P1: PlayerInput = {
   moveLeft: ['KeyA'],
   moveRight: ['KeyD'],
   rotate: ['KeyW'],
-  softDrop: ['KeyS'],
-  hardDrop: ['Space'],
+  softDrop: ['KeyX'], // Changed from KeyS to avoid conflict with hardDrop
+  hardDrop: ['KeyS'], // Changed from Space to KeyS
 };
 
 export const INPUT_P2: PlayerInput = {
-  moveLeft: ['ArrowLeft'],
-  moveRight: ['ArrowRight'],
-  rotate: ['ArrowUp'],
-  softDrop: ['ArrowDown'],
-  hardDrop: ['Enter', 'NumpadEnter'],
+  moveLeft: ['KeyJ'], // Changed from ArrowLeft to KeyJ
+  moveRight: ['KeyL'], // Changed from ArrowRight to KeyL
+  rotate: ['KeyI'], // Changed from ArrowUp to KeyI
+  softDrop: ['KeyK'], // Changed from ArrowDown to KeyK for consistency
+  hardDrop: ['Comma'], // Changed from Enter/NumpadEnter to Comma
 };
