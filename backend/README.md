@@ -40,8 +40,32 @@ cp .env.example .env
 
 ### Running the Server
 
+#### Development Mode
+
 ```bash
 uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+Or use the start script:
+```bash
+# Linux/Mac
+./start.sh
+
+# Windows
+start.bat
+```
+
+#### Production Mode (with Gunicorn)
+
+```bash
+# Linux/Mac
+./start-prod.sh
+
+# Windows
+start-prod.bat
+
+# Manual
+uv run gunicorn app.main:app --config gunicorn.conf.py --worker-class uvicorn.workers.UvicornWorker
 ```
 
 The API will be available at `http://localhost:8000`
@@ -108,6 +132,16 @@ Get game statistics
   "total_lines_cleared": 1500
 }
 ```
+
+## Production Deployment
+
+For production deployment with Gunicorn, see [PRODUCTION.md](PRODUCTION.md) for:
+- Gunicorn configuration
+- Systemd service setup
+- Docker deployment
+- Nginx reverse proxy
+- Performance optimization
+- Security best practices
 
 ## Development
 

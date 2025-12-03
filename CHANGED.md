@@ -1,5 +1,52 @@
 # Change Log
 
+## 2024-12-02 - Update 4: Production Deployment with Gunicorn
+
+### Gunicorn 支援
+
+**新增功能：**
+- ✅ Gunicorn + Uvicorn Workers 配置
+- ✅ 生產環境啟動腳本
+- ✅ 完整的 Gunicorn 配置檔案
+- ✅ 生產部署指南
+
+**新增檔案：**
+- `backend/gunicorn.conf.py` - Gunicorn 配置
+- `backend/start-prod.sh` - Linux/Mac 生產啟動腳本
+- `backend/start-prod.bat` - Windows 生產啟動腳本
+- `backend/PRODUCTION.md` - 生產部署完整指南
+
+**更新檔案：**
+- `backend/pyproject.toml` - 新增 gunicorn 依賴
+- `backend/.env.example` - 新增 Gunicorn 環境變數
+- `backend/README.md` - 新增生產模式說明
+
+**配置特點：**
+- 自動計算 worker 數量（CPU * 2 + 1）
+- Uvicorn worker class for ASGI support
+- 完整的日誌配置
+- 生產級別的性能優化
+
+**使用方式：**
+
+開發模式：
+```bash
+./start.sh  # Uvicorn with reload
+```
+
+生產模式：
+```bash
+./start-prod.sh  # Gunicorn with multiple workers
+```
+
+**部署選項：**
+- Systemd service
+- Docker container
+- Nginx reverse proxy
+- Supervisor process manager
+
+---
+
 ## 2024-12-02 - Update 3: Frontend API Integration Fixes
 
 ### 前端整合修正
