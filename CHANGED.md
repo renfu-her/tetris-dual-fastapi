@@ -1,5 +1,27 @@
 # Change Log
 
+## 2024-12-03 - Update 11: Clean UI - 移除 API 狀態組件
+
+### 簡化使用者介面
+
+**移除內容：**
+- ❌ ApiStatus 組件（右上角的 API 狀態指示器）
+- ❌ ApiInfo 組件和按鈕（API 資訊彈窗）
+
+**原因：**
+- 使用 Nginx 反向代理後，API 和前端在同一域名下
+- 不需要顯示 API 連接狀態
+- 簡化使用者介面，專注於遊戲本身
+
+**更新檔案：**
+- `frontend/App.tsx` - 移除 ApiStatus 和 ApiInfo 相關代碼
+
+**保留的組件：**
+- ✅ ApiStatus.tsx 和 ApiInfo.tsx 文件仍保留（以備需要時使用）
+- ✅ 可以隨時重新添加
+
+---
+
 ## 2024-12-03 - Update 10: No CORS Setup (使用 Nginx 反向代理)
 
 ### 無需 CORS 的完美方案
