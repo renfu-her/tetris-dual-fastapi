@@ -264,28 +264,28 @@ const App: React.FC = () => {
               )}
             </div>
             
-            {/* Controls Helper - INCREASED FONT SIZE */}
-             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-lg text-slate-400 mt-8 max-w-4xl w-full">
+            {/* Controls Helper - Horizontal Layout */}
+             <div className="flex flex-col gap-4 text-slate-400 mt-8 max-w-5xl w-full">
                 <div className="bg-slate-800/50 p-4 rounded-lg border border-slate-700">
-                    <p className="font-bold text-cyan-400 mb-3 text-xl">🎮 P1 鍵盤控制</p>
-                    <ul className="space-y-2 text-base">
-                      <li>◀️ 左移: <span className="text-cyan-300 font-mono font-bold text-lg">A</span></li>
-                      <li>▶️ 右移: <span className="text-cyan-300 font-mono font-bold text-lg">D</span></li>
-                      <li>🔄 旋轉: <span className="text-cyan-300 font-mono font-bold text-lg">W</span></li>
-                      <li>⬇️ 軟降: <span className="text-cyan-300 font-mono font-bold text-lg">X</span></li>
-                      <li>⚡ 快降: <span className="text-cyan-300 font-mono font-bold text-lg">S</span></li>
-                    </ul>
+                    <p className="font-bold text-cyan-400 mb-3 text-lg">🎮 P1 鍵盤控制</p>
+                    <div className="flex flex-wrap gap-4 text-sm">
+                      <span>◀️ <span className="text-cyan-300 font-mono font-bold">A</span> 左移</span>
+                      <span>▶️ <span className="text-cyan-300 font-mono font-bold">D</span> 右移</span>
+                      <span>🔄 <span className="text-cyan-300 font-mono font-bold">W</span> 旋轉</span>
+                      <span>⬇️ <span className="text-cyan-300 font-mono font-bold">X</span> 軟降</span>
+                      <span>⚡ <span className="text-cyan-300 font-mono font-bold">S</span> 快降</span>
+                    </div>
                 </div>
                 {mode === '2P' && (
                     <div className="bg-slate-800/50 p-4 rounded-lg border border-slate-700">
-                        <p className="font-bold text-purple-400 mb-3 text-xl">🎮 P2 鍵盤控制</p>
-                        <ul className="space-y-2 text-base">
-                          <li>◀️ 左移: <span className="text-purple-300 font-mono font-bold text-lg">J</span></li>
-                          <li>▶️ 右移: <span className="text-purple-300 font-mono font-bold text-lg">L</span></li>
-                          <li>🔄 旋轉: <span className="text-purple-300 font-mono font-bold text-lg">I</span></li>
-                          <li>⬇️ 軟降: <span className="text-purple-300 font-mono font-bold text-lg">K</span></li>
-                          <li>⚡ 快降: <span className="text-purple-300 font-mono font-bold text-lg">,</span> (逗號)</li>
-                        </ul>
+                        <p className="font-bold text-purple-400 mb-3 text-lg">🎮 P2 鍵盤控制</p>
+                        <div className="flex flex-wrap gap-4 text-sm">
+                          <span>◀️ <span className="text-purple-300 font-mono font-bold">J</span> 左移</span>
+                          <span>▶️ <span className="text-purple-300 font-mono font-bold">L</span> 右移</span>
+                          <span>🔄 <span className="text-purple-300 font-mono font-bold">I</span> 旋轉</span>
+                          <span>⬇️ <span className="text-purple-300 font-mono font-bold">K</span> 軟降</span>
+                          <span>⚡ <span className="text-purple-300 font-mono font-bold">,</span> 快降</span>
+                        </div>
                     </div>
                 )}
             </div>
