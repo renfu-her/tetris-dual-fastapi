@@ -1,5 +1,46 @@
 # Change Log
 
+## 2025-12-03 - Update 13: Vite Build Optimization
+
+### Vite 構建優化與壓縮配置 (Vite Build Optimization & Compression)
+
+**優化內容：**
+
+**構建配置：**
+- ✅ 啟用 esbuild 壓縮（快速且高效）
+- ✅ 代碼分割：將 React 和 React-DOM 單獨打包
+- ✅ 資源文件命名優化（帶 hash 值）
+- ✅ 關閉 sourcemap（生產環境）
+- ✅ 自動清空輸出目錄
+- ✅ CSS 代碼分割
+
+**構建結果：**
+```
+dist/index.html                          1.49 kB │ gzip: 0.70 kB
+dist/assets/js/react-vendor-*.js        11.80 kB │ gzip: 4.20 kB
+dist/assets/js/index-*.js              202.73 kB │ gzip: 63.71 kB
+```
+
+**配置特點：**
+- 📦 **代碼分割**：React 庫單獨打包，利用瀏覽器緩存
+- 🗜️ **高效壓縮**：使用 esbuild minify，構建速度快
+- 🎯 **文件命名**：帶 hash 的文件名，支持長期緩存
+- 🧹 **自動清理**：每次構建前清空 dist 目錄
+- 📊 **gzip 壓縮**：最終文件只有 63.71 KB（gzipped）
+
+**更新檔案：**
+- `frontend/vite.config.ts` - 添加完整的 build 配置
+
+**構建命令：**
+```bash
+cd frontend
+pnpm build
+```
+
+**Date:** 2025-12-03
+
+---
+
 ## 2025-12-03 - Update 12: Keyboard Control Customization & UI Instructions
 
 ### 鍵盤控制調整與介面說明優化 (Keyboard Control Adjustments & UI Instructions Enhancement)
