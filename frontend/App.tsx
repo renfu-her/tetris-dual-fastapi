@@ -5,6 +5,7 @@ import TetrisBoard from './components/TetrisBoard';
 import { NextPiece } from './components/NextPiece';
 import Leaderboard from './components/Leaderboard';
 import { ApiInfo } from './components/ApiInfo';
+import { ApiStatus } from './components/ApiStatus';
 import { INPUT_P1, INPUT_P2 } from './constants';
 import { saveScore } from './services/leaderboardService';
 import { getGameSummary } from './services/geminiService';
@@ -127,6 +128,9 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col items-center bg-slate-900 text-white p-4">
       
+      {/* API Status Indicator */}
+      <ApiStatus position="top-right" />
+
       {/* Header */}
       <header className="w-full max-w-4xl flex justify-between items-end mb-8 border-b border-slate-700 pb-4">
         <div>
