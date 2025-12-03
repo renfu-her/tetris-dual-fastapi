@@ -12,9 +12,28 @@ View your app in AI Studio: https://ai.studio/apps/drive/1yTz1KcCUAq_ogpgNnZyhM0
 
 **Prerequisites:**  Node.js
 
-
 1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+   ```bash
+   npm install
+   # or
+   pnpm install
+   ```
+
+2. Configure environment variables:
+   - Copy `env.template` to `.env`:
+     ```bash
+     cp env.template .env
+     ```
+   - Edit `.env` and set the backend API URL:
+     - For production: `VITE_API_BASE_URL=https://tetris-game.ai-tracks.com/api`
+     - For local development: `VITE_API_BASE_URL=http://localhost:8000/api`
+   - (Optional) Set `GEMINI_API_KEY` if using Gemini AI features
+
 3. Run the app:
-   `npm run dev`
+   ```bash
+   npm run dev
+   # or
+   pnpm dev
+   ```
+
+The app will be available at http://localhost:3000

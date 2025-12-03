@@ -1,7 +1,8 @@
 import { LeaderboardEntry } from '../types';
 
-// API base URL - change this if backend runs on different port
-const API_BASE_URL = 'https://tetris-game.ai-tracks.com/api';
+// API base URL - configured via environment variable
+// Set VITE_API_BASE_URL in .env file to change the backend URL
+const API_BASE_URL = (import.meta as any).env?.VITE_API_BASE_URL || 'http://localhost:8000/api';
 
 // Fallback to localStorage for offline mode
 const STORAGE_KEY = 'tetris_duel_leaderboard';
