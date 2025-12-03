@@ -1,22 +1,87 @@
 # Change Log
 
-## 2024-12-03 - Update 6: API Information Component
+## 2024-12-03 - Update 7: Production Troubleshooting Tools
 
-### 前端 API 資訊組件 (Frontend API Info Component)
+### 生產環境診斷工具 (Production Troubleshooting Tools)
 
 **新增功能：**
-- ✅ React 組件顯示後端 API 狀態
-- ✅ 即時檢查 API 連接狀態
-- ✅ 顯示所有可用的 API 端點
-- ✅ 直接連結到 API 文檔（Swagger UI / ReDoc）
-- ✅ 顯示當前環境設定資訊
-- ✅ 友善的錯誤處理和診斷提示
+- ✅ 快速診斷腳本 - 立即找出問題
+- ✅ 生產環境狀態檢查
+- ✅ 完整的修復指南
+- ✅ 常見問題解決方案
 
 **新增檔案：**
-- `frontend/components/ApiInfo.tsx` - API 資訊顯示組件
+- `backend/QUICK_FIX.md` - 500 錯誤快速修復指南
+- `backend/check-production.sh` - 生產環境快速檢查腳本
+
+**使用方式：**
+
+**在生產服務器上執行：**
+
+```bash
+# 快速檢查所有狀態
+cd /home/ai-tracks-tetris-game/htdocs/tetris-game.ai-tracks.com/backend
+chmod +x check-production.sh
+./check-production.sh
+
+# 詳細診斷
+./diagnose-service.sh
+
+# 查看修復指南
+cat QUICK_FIX.md
+```
+
+**檢查項目：**
+1. ✓ MySQL 服務狀態
+2. ✓ 後端服務狀態  
+3. ✓ 端口監聽狀況（8098）
+4. ✓ 本地 API 響應
+5. ✓ 外部訪問測試
+6. ✓ Nginx 狀態和配置
+7. ✓ 日誌目錄權限
+8. ✓ 最近錯誤日誌
+
+**常見修復命令：**
+
+```bash
+# 啟動服務
+sudo systemctl start tetris-dual-backend.service
+
+# 重啟服務
+sudo systemctl restart tetris-dual-backend.service
+
+# 查看實時日誌
+sudo journalctl -u tetris-dual-backend.service -f
+
+# 重新安裝依賴
+cd backend && uv sync
+
+# 修復權限
+sudo chown -R ai-tracks-tetris-game:ai-tracks-tetris-game /var/log/uvicorn
+```
+
+---
+
+## 2024-12-03 - Update 6: API Status Indicator & Info Component
+
+### 即時 API 狀態指示器 (Real-time API Status Indicator)
+
+**新增功能：**
+- ✅ **即時狀態顯示**：頁面右上角直接顯示 API 連接狀態
+- ✅ **自動檢測**：每 30 秒自動檢查 API 是否在線
+- ✅ **視覺指示**：
+  - 🟢 綠色 = API Online（正常連接）
+  - 🔴 紅色 = API Offline（連接失敗）
+  - 🟡 黃色 = Checking（檢查中）
+- ✅ **版本顯示**：連接成功時顯示 API 版本號
+- ✅ **懸停提示**：滑鼠移到狀態上可看到完整 API URL
+
+**新增檔案：**
+- `frontend/components/ApiStatus.tsx` - 即時 API 狀態指示器
+- `frontend/components/ApiInfo.tsx` - 詳細 API 資訊組件
 
 **更新檔案：**
-- `frontend/App.tsx` - 添加 API Info 按鈕和彈窗
+- `frontend/App.tsx` - 添加 ApiStatus 組件在右上角
 
 **功能特點：**
 - 📡 **即時狀態檢查**：自動獲取 API 狀態和健康檢查
