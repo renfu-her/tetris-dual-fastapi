@@ -1,5 +1,60 @@
 # Change Log
 
+## 2024-12-03 - Update 10: No CORS Setup (使用 Nginx 反向代理)
+
+### 無需 CORS 的完美方案
+
+**核心理念：**
+通過 Nginx 反向代理，讓前端和後端使用同一個域名，這樣就是**同源請求**，完全不需要處理 CORS！
+
+**架構設計：**
+```
+https://tetris-game.ai-tracks.com/       → 前端靜態文件
+https://tetris-game.ai-tracks.com/api/   → 後端 API (反向代理到 127.0.0.1:8098)
+```
+
+**更新內容：**
+- ✅ 後端根據環境自動決定是否啟用 CORS
+  - 生產環境（ENV=production）：停用 CORS
+  - 開發環境（ENV=development）：啟用 CORS
+- ✅ 創建完整的無 CORS 設置指南
+- ✅ Nginx 反向代理配置
+- ✅ 前端使用相對路徑調用 API
+
+**更新檔案：**
+- `backend/app/main.py` - 智能 CORS 配置
+- `backend/NO_CORS_SETUP.md` - 完整設置指南
+
+**優勢：**
+1. ✨ **無需 CORS**：同源請求，不觸發 CORS 檢查
+2. 🔒 **更安全**：不需要配置 `Access-Control-Allow-Origin`
+3. 🚀 **更快**：沒有預檢請求（OPTIONS）
+4. 🎯 **更簡單**：減少配置複雜度
+5. 🌐 **統一域名**：所有流量通過一個域名
+
+**關鍵配置：**
+
+後端 `.env`：
+```env
+ENV=production  # 生產環境不啟用 CORS
+```
+
+前端 `.env`：
+```env
+VITE_API_BASE_URL=/api  # 使用相對路徑
+```
+
+Nginx 配置：
+```nginx
+location /api/ {
+    proxy_pass http://127.0.0.1:8098/api/;
+    proxy_set_header Host $host;
+    # ... 其他代理設置
+}
+```
+
+---
+
 ## 2024-12-03 - Update 9: Production Deployment Tools & Guides
 
 ### 生產環境部署工具和完整指南

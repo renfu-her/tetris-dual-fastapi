@@ -35,30 +35,33 @@ app = FastAPI(
 )
 
 # Configure CORS
-# 從環境變數讀取，如果沒有設定則使用預設值
-cors_origins_env = os.getenv(
-    "CORS_ORIGINS", 
-    "https://tetris-game.ai-tracks.com,http://localhost:3000,http://localhost:5173,http://localhost:8098"
-)
-cors_origins = [origin.strip() for origin in cors_origins_env.split(",")]
+# 生產環境使用 Nginx 反向代理，不需要 CORS
+# 開發環境需要 CORS 以支援本地開發
+env_mode = os.getenv("ENV", "development")
 
-# 在開發環境中額外允許 127.0.0.1
-if os.getenv("ENV", "development") == "development":
-    cors_origins.extend([
+if env_mode == "development":
+    # 開發環境：啟用 CORS
+    cors_origins = [
+        "http://localhost:3000",
+        "http://localhost:5173",
+        "http://localhost:8098",
         "http://127.0.0.1:3000",
         "http://127.0.0.1:5173",
         "http://127.0.0.1:8098",
-    ])
-
-print(f">>> CORS允許的來源: {cors_origins}")
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=cors_origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+    ]
+    
+    print(f">>> 開發模式: CORS 已啟用，允許的來源: {cors_origins}")
+    
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=cors_origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+else:
+    # 生產環境：不需要 CORS（使用 Nginx 反向代理）
+    print(f">>> 生產模式: CORS 已停用（使用 Nginx 反向代理）")
 
 # Include routers
 app.include_router(games_router.router)
