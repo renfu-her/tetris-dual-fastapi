@@ -1,5 +1,56 @@
 # Change Log
 
+## 2024-12-03 - Update 5: Environment Variable Configuration for Frontend
+
+### 前端環境變數配置 (Frontend Environment Variable Configuration)
+
+**新增功能：**
+- ✅ API URL 現在可以透過環境變數設定
+- ✅ 支援開發環境和生產環境的不同配置
+- ✅ 創建環境變數模板文件
+
+**新增/更新檔案：**
+- `frontend/env.template` - 環境變數模板文件（新增）
+- `frontend/vite-env.d.ts` - TypeScript 環境變數類型定義（新增）
+- `frontend/services/leaderboardService.ts` - 更新為使用環境變數中的 API URL
+- `frontend/vite.config.ts` - 更新配置以支援 VITE_API_BASE_URL
+- `frontend/README.md` - 更新使用說明
+
+**環境變數設定：**
+```bash
+# 生產環境
+VITE_API_BASE_URL=https://tetris-game.ai-tracks.com/api
+
+# 開發環境
+VITE_API_BASE_URL=http://localhost:8000/api
+```
+
+**使用方式：**
+1. 複製 `env.template` 為 `.env`：
+   ```bash
+   cd frontend
+   cp env.template .env
+   ```
+2. 編輯 `.env` 設定你的 API URL
+3. 啟動開發服務器：
+   ```bash
+   pnpm dev
+   ```
+
+**技術細節：**
+- 使用 Vite 的環境變數系統（需要 `VITE_` 前綴）
+- 在 `vite.config.ts` 中配置環境變數
+- 提供預設值 fallback 機制
+- 完整的 TypeScript 類型支援
+
+**好處：**
+- 🎯 更容易切換開發/生產環境
+- 🔒 敏感設定不需要寫死在代碼中
+- 📦 部署時更靈活
+- 🛠️ 開發體驗更好
+
+---
+
 ## 2024-12-02 - Update 4: Production Deployment with Gunicorn
 
 ### Gunicorn 支援
