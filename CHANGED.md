@@ -1,42 +1,47 @@
 # Change Log
 
-## 2025-12-03 - Update 14: UI Clean & Alignment Optimization
+## 2025-12-03 - Update 14: UI Alignment & Border Optimization
 
-### UI 界面清理與對齊優化 (UI Clean & Alignment Optimization)
+### UI 對齊與邊框優化 (UI Alignment & Border Optimization)
 
 **優化內容：**
 
-**移除的元素：**
-- ❌ Header 底部分隔線（border-b）
-- ❌ 鍵盤控制卡片邊框（border）
-- ✅ 整體界面更流暢統一
+**對齊優化：**
+- ✅ 鍵盤控制區域與 Header 完美對齊
+- ✅ 左邊對齊 "NEON TETRIS" 標題
+- ✅ 右邊對齊 "QUIT GAME" 按鈕
+- ✅ 統一使用 `max-w-4xl` 寬度
+
+**邊框設計：**
+- ✅ 恢復鍵盤控制卡片邊框（`border border-slate-600`）
+- ❌ 移除 Header 底部分隔線
+- 🎨 優化邊框顏色，更柔和
 
 **視覺優化：**
-- 🎨 降低卡片背景不透明度（50% → 30%）
-- 📏 減少內邊距和間距，更緊湊
-- 🔤 調整標題字體大小，更協調
-- 🌊 無邊框設計，界面更流暢
+- 📦 鍵盤控制卡片向內縮進，對齊上方元素
+- 🎨 背景不透明度調整（40%）
+- 📏 內邊距恢復（p-4）
+- 🔤 保持緊湊的標題字體（text-base）
 
 **具體改動：**
 1. **Header 區域**
    - 移除底部分隔線
-   - 保持乾淨的標題區域
+   - 寬度：`max-w-4xl`
 
 2. **鍵盤控制卡片**
-   - 移除邊框線
-   - 降低背景不透明度（更融入背景）
-   - 減少內邊距（p-4 → p-3）
-   - 調整間距（mt-8 → mt-6）
-   - 標題字體調整（text-lg → text-base）
+   - 添加邊框：`border border-slate-600`
+   - 寬度對齊：`max-w-4xl`（與 Header 一致）
+   - 背景：`bg-slate-800/40`
+   - 內邊距：`p-4`
 
 **視覺效果：**
-- 整體界面無明顯分隔線
-- 元素之間自然過渡
-- 更現代化的扁平設計
+- 鍵盤控制區域與頂部完美對齊
+- 有框線但不突兀
+- 整體布局更整齊協調
 - 重點突出遊戲區域
 
 **更新檔案：**
-- `frontend/App.tsx` - 移除邊框和優化間距
+- `frontend/App.tsx` - 對齊優化和邊框設計
 
 **Date:** 2025-12-03
 

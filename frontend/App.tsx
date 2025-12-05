@@ -265,8 +265,8 @@ const App: React.FC = () => {
             </div>
             
             {/* Controls Helper - Horizontal Layout */}
-             <div className="flex flex-col gap-3 text-slate-400 mt-6 max-w-5xl w-full">
-                <div className="bg-slate-800/30 p-3 rounded-lg">
+             <div className="flex flex-col gap-3 text-slate-400 mt-6 w-full max-w-4xl">
+                <div className="bg-slate-800/40 p-4 rounded-lg border border-slate-600">
                     <p className="font-bold text-cyan-400 mb-2 text-base">🎮 P1 鍵盤控制</p>
                     <div className="flex flex-wrap gap-4 text-sm">
                       <span>◀️ <span className="text-cyan-300 font-mono font-bold">A</span> 左移</span>
@@ -277,7 +277,7 @@ const App: React.FC = () => {
                     </div>
                 </div>
                 {mode === '2P' && (
-                    <div className="bg-slate-800/30 p-3 rounded-lg">
+                    <div className="bg-slate-800/40 p-4 rounded-lg border border-slate-600">
                         <p className="font-bold text-purple-400 mb-2 text-base">🎮 P2 鍵盤控制</p>
                         <div className="flex flex-wrap gap-4 text-sm">
                           <span>◀️ <span className="text-purple-300 font-mono font-bold">J</span> 左移</span>
