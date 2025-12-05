@@ -126,7 +126,7 @@ const App: React.FC = () => {
     <div className="min-h-screen flex flex-col items-center bg-slate-900 text-white p-4">
       
       {/* Header */}
-      <header className="w-full max-w-4xl flex justify-between items-end mb-8 border-b border-slate-700 pb-4">
+      <header className="w-full max-w-4xl flex justify-between items-end mb-8 pb-4">
         <div>
            <h1 className="text-2xl md:text-4xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 drop-shadow-lg">
             NEON TETRIS
@@ -265,9 +265,9 @@ const App: React.FC = () => {
             </div>
             
             {/* Controls Helper - Horizontal Layout */}
-             <div className="flex flex-col gap-4 text-slate-400 mt-8 max-w-5xl w-full">
-                <div className="bg-slate-800/50 p-4 rounded-lg border border-slate-700">
-                    <p className="font-bold text-cyan-400 mb-3 text-lg">🎮 P1 鍵盤控制</p>
+             <div className="flex flex-col gap-3 text-slate-400 mt-6 max-w-5xl w-full">
+                <div className="bg-slate-800/30 p-3 rounded-lg">
+                    <p className="font-bold text-cyan-400 mb-2 text-base">🎮 P1 鍵盤控制</p>
                     <div className="flex flex-wrap gap-4 text-sm">
                       <span>◀️ <span className="text-cyan-300 font-mono font-bold">A</span> 左移</span>
                       <span>▶️ <span className="text-cyan-300 font-mono font-bold">D</span> 右移</span>
@@ -277,8 +277,8 @@ const App: React.FC = () => {
                     </div>
                 </div>
                 {mode === '2P' && (
-                    <div className="bg-slate-800/50 p-4 rounded-lg border border-slate-700">
-                        <p className="font-bold text-purple-400 mb-3 text-lg">🎮 P2 鍵盤控制</p>
+                    <div className="bg-slate-800/30 p-3 rounded-lg">
+                        <p className="font-bold text-purple-400 mb-2 text-base">🎮 P2 鍵盤控制</p>
                         <div className="flex flex-wrap gap-4 text-sm">
                           <span>◀️ <span className="text-purple-300 font-mono font-bold">J</span> 左移</span>
                           <span>▶️ <span className="text-purple-300 font-mono font-bold">L</span> 右移</span>

@@ -1,5 +1,47 @@
 # Change Log
 
+## 2025-12-03 - Update 14: UI Clean & Alignment Optimization
+
+### UI 界面清理與對齊優化 (UI Clean & Alignment Optimization)
+
+**優化內容：**
+
+**移除的元素：**
+- ❌ Header 底部分隔線（border-b）
+- ❌ 鍵盤控制卡片邊框（border）
+- ✅ 整體界面更流暢統一
+
+**視覺優化：**
+- 🎨 降低卡片背景不透明度（50% → 30%）
+- 📏 減少內邊距和間距，更緊湊
+- 🔤 調整標題字體大小，更協調
+- 🌊 無邊框設計，界面更流暢
+
+**具體改動：**
+1. **Header 區域**
+   - 移除底部分隔線
+   - 保持乾淨的標題區域
+
+2. **鍵盤控制卡片**
+   - 移除邊框線
+   - 降低背景不透明度（更融入背景）
+   - 減少內邊距（p-4 → p-3）
+   - 調整間距（mt-8 → mt-6）
+   - 標題字體調整（text-lg → text-base）
+
+**視覺效果：**
+- 整體界面無明顯分隔線
+- 元素之間自然過渡
+- 更現代化的扁平設計
+- 重點突出遊戲區域
+
+**更新檔案：**
+- `frontend/App.tsx` - 移除邊框和優化間距
+
+**Date:** 2025-12-03
+
+---
+
 ## 2025-12-03 - Update 13: Vite Build Optimization
 
 ### Vite 構建優化與壓縮配置 (Vite Build Optimization & Compression)
