@@ -292,8 +292,8 @@ const App: React.FC = () => {
           </div>
         )}
 
-        {/* Leaderboard - Always visible but pushed down */}
-        <Leaderboard refreshTrigger={refreshScores} />
+        {/* Leaderboard - Only visible in MENU mode */}
+        {mode === 'MENU' && <Leaderboard refreshTrigger={refreshScores} />}
 
       </main>
     </div>

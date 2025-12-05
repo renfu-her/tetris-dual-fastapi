@@ -1,5 +1,34 @@
 # Change Log
 
+## 2025-12-03 - Update 15: Hide Leaderboard During Gameplay
+
+### 遊戲中隱藏排行榜 (Hide Leaderboard During Gameplay)
+
+**優化內容：**
+
+**顯示邏輯優化：**
+- ✅ 排行榜只在主選單（MENU）顯示
+- ❌ 遊戲進行中不顯示排行榜
+- ✅ 更專注的遊戲體驗
+
+**改動說明：**
+- 排行榜從「永遠顯示」改為「僅在選單顯示」
+- 條件渲染：`{mode === 'MENU' && <Leaderboard />}`
+- 遊戲結束後會自動滾動到排行榜（保留原功能）
+
+**好處：**
+- 🎮 遊戲畫面更簡潔
+- 👀 減少視覺干擾
+- 🎯 玩家更專注於遊戲
+- 📊 選單時可以查看完整排行榜
+
+**更新檔案：**
+- `frontend/App.tsx` - 條件渲染排行榜
+
+**Date:** 2025-12-03
+
+---
+
 ## 2025-12-03 - Update 14: UI Alignment & Border Optimization
 
 ### UI 對齊與邊框優化 (UI Alignment & Border Optimization)
